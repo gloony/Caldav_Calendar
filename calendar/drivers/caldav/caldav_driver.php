@@ -1919,12 +1919,12 @@ class caldav_driver extends calendar_driver
     }
     private function _decrypt_pass($pass) {
         $p = base64_decode($pass);
-        $e = new Encryption(MCRYPT_BlOWFISH, MCRYPT_MODE_CBC);
-        return $e->decrypt($p, $this->crypt_key);
+        $e = new Encryption($this->crypt_key, $this->iv_key);
+        return $e->decrypt($p);
     }
     private function _encrypt_pass($pass) {
-        $e = new Encryption(MCRYPT_BlOWFISH, MCRYPT_MODE_CBC);
-        $p = $e->encrypt($pass, $this->crypt_key);
+        $e = new Encryption($this->crypt_key, $this->iv_key);
+        $p = $e->encrypt($pass);
         return base64_encode($p);
     }
 }
