@@ -1,3 +1,8 @@
+Fork 2018 by gloony
+In this Fork, I change the encryption method with OpenSSL for PHP 7+ compatibility
+
+-------------------ORIGINAL README-----------------------------------
+
 I made this as a working, out of the box, calendar for use with Nextcloud 12.
 
 I will update this when needed by deprecated purposes or when Nextcloud changes their sabre version.
