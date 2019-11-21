@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `caldav_calendars` (
   `calendar_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL,
+  `sort` int(4) NOT NULL,
   `color` varchar(8) NOT NULL,
   `showalarms` tinyint(1) NOT NULL DEFAULT '1',
 

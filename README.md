@@ -1,6 +1,9 @@
 Fork 2018 by gloony
 In this Fork, I change the encryption method with OpenSSL for PHP 7+ compatibility
 
+All that was keeped is the driver.
+I recover the last update from the repository of kolab (official) and start to work to make something stable.
+
 -------------------ORIGINAL README-----------------------------------
 
 I made this as a working, out of the box, calendar for use with Nextcloud 12.

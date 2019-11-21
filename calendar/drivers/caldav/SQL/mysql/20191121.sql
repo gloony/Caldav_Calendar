@@ -1,0 +1,1 @@
+ALTER TABLE `caldav_calendars` ADD `sort` int(4) DEFAULT NULL AFTER `name`;

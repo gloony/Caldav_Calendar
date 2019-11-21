@@ -99,16 +99,18 @@ class caldav_driver extends calendar_driver
             $result = $this->rc->db->query("SELECT *, calendar_id AS id
                 FROM " . $this->db_calendars . "
                 WHERE user_id=?
-                ORDER BY name",
+                ORDER BY sort ASC, readonly ASC, id ASC",
                 $this->rc->user->ID
             );
             while ($result && ($arr = $this->rc->db->fetch_assoc($result))) {
+                if($arr['readonly']==0) $editable = true;
+                else $editable = false;
                 $arr['showalarms'] = intval($arr['showalarms']);
                 $arr['active'] = !in_array($arr['id'], $hidden);
                 $arr['name'] = html::quote($arr['name']);
                 $arr['listname'] = html::quote($arr['name']);
                 $arr['rights'] = 'lrswikxteav';
-                $arr['editable'] = true;
+                $arr['editable'] = $editable;
                 $arr['caldav_pass'] = $this->_decrypt_pass($arr['caldav_pass']);
                 $arr['caldav_oauth_provider'] = html::quote($arr['caldav_oauth_provider']);
                 $this->calendars[$arr['calendar_id']] = $arr;
@@ -117,6 +119,9 @@ class caldav_driver extends calendar_driver
                 $cal_id = $arr['calendar_id'];
                 $this->sync_clients[$cal_id] = new caldav_sync($arr);
             }
+            // foreach($calendar_ids as $calendar_id){
+            //   $sorted_cal_ids[] = 
+            // }
             $this->calendar_ids = join(',', $calendar_ids);
         }
     }
